@@ -1,0 +1,24 @@
+.container {
+    width: 30%;
+}
+.calculator {
+    border: 2px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.calculator_display {
+    text-align: right;
+    font-size: 150%
+}
+
+.calculator_keys {
+    display: grid;
+    grid-gap: 1px;
+   grid-template-columns: repeat(4, 1fr);
+}
+
+.key_equal {
+    grid-column: -2;
+    grid-row: 2 / span 4;
+}
