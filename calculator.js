@@ -15,7 +15,7 @@ keys.addEventListener("click", (e) => {
     if (!action) {
       if (displayNumber === "0" || previousKeyType === "operator") {
         display.textContent = keyContent;
-        calculator.dataset.previousKeyType = "";
+        calculator.dataset.previousKeyType = "number";
       } else {
         display.textContent = displayNumber + keyContent;
       }
@@ -32,36 +32,39 @@ keys.addEventListener("click", (e) => {
       calculator.dataset.operator = action;
     }
     if (action === "decimal") {
-      if (display.textContent === "0") {
-        display.textContent = "0";
-      } else if (display.textContent.includes(".")) {
-        display.textContent = displayNumber;
-      } else {
+      if (!display.textContent.includes(".") && previousKeyType !== 'operator') {
         display.textContent = displayNumber + ".";
-      }
+    } else if (previousKeyType === "operator") {
+        display.textContent = '0.';
+    }
+    calculator.dataset.previousKeyType = "decimal";
     }
     if (action === "clear") {
       display.textContent = "0";
+      calculator.dataset.previousKeyType = "clear";
     }
     if (action === "calculate") {
       const firstValue = calculator.dataset.firstValue;
       const operator = calculator.dataset.operator;
       const secondValue = displayNumber;
       display.textContent = calculate(firstValue, operator, secondValue);
+      calculator.dataset.previousKeyType = "calculate";
     }
   }
 });
 
 const calculate = (num1, operator, num2) => {
   let result = "";
+  let firstNum = parseFloat(num1);
+  let secondNum = parseFloat(num2);
   if (operator === "add") {
-    result = parseFloat(num1) + parseFloat(num2);
+    result = firstNum + secondNum;
   } else if (operator === "subtract") {
-    result = parseFloat(num1) - parseFloat(num2);
+    result = firstNum - secondNum;
   } else if (operator === "divide") {
-    result = parseFloat(num1) / parseFloat(num2);
+    result = firstNum / secondNum;
   } else if (operator === "multiply") {
-    result = parseFloat(num1) * parseFloat(num2);
+    result = firstNum * secondNum;
   }
   return result;
 };
