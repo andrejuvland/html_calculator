@@ -13,7 +13,7 @@ keys.addEventListener("click", (e) => {
     );
     const previousKeyType = calculator.dataset.previousKeyType;
     if (!action) {
-      if (displayNumber === "0" || previousKeyType === "operator") {
+      if (displayNumber === "0" || previousKeyType === "operator" || previousKeyType === 'calculate') {
         display.textContent = keyContent;
         calculator.dataset.previousKeyType = "number";
       } else {
