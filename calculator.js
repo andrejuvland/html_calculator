@@ -41,6 +41,7 @@ keys.addEventListener("click", (e) => {
     }
     if (action === "clear") {
       display.textContent = "0";
+      calculator.dataset.firstValue = '0';
       calculator.dataset.previousKeyType = "clear";
     }
     if (action === "calculate") {
