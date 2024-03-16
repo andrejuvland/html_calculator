@@ -15,6 +15,7 @@ keys.addEventListener("click", (e) => {
     if (!action) {
       if (displayNumber === "0" || previousKeyType === "operator") {
         display.textContent = keyContent;
+        calculator.dataset.previousKeyType = "";
       } else {
         display.textContent = displayNumber + keyContent;
       }
@@ -31,17 +32,21 @@ keys.addEventListener("click", (e) => {
       calculator.dataset.operator = action;
     }
     if (action === "decimal") {
-      display.textContent = displayNumber + ".";
+      if (display.textContent === "0") {
+        display.textContent = "0";
+      } else if (display.textContent.includes(".")) {
+        display.textContent = displayNumber;
+      } else {
+        display.textContent = displayNumber + ".";
+      }
     }
     if (action === "clear") {
       display.textContent = "0";
     }
     if (action === "calculate") {
       const firstValue = calculator.dataset.firstValue;
-      console.log(firstValue)
       const operator = calculator.dataset.operator;
       const secondValue = displayNumber;
-      console.log(secondValue)
       display.textContent = calculate(firstValue, operator, secondValue);
     }
   }
@@ -51,11 +56,11 @@ const calculate = (num1, operator, num2) => {
   let result = "";
   if (operator === "add") {
     result = parseFloat(num1) + parseFloat(num2);
-  } else if(operator === 'subtract') {
+  } else if (operator === "subtract") {
     result = parseFloat(num1) - parseFloat(num2);
-  } else if (operator === 'divide') {
+  } else if (operator === "divide") {
     result = parseFloat(num1) / parseFloat(num2);
-  } else if (operator === 'multiply') {
+  } else if (operator === "multiply") {
     result = parseFloat(num1) * parseFloat(num2);
   }
   return result;
