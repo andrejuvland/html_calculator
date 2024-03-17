@@ -48,8 +48,10 @@ keys.addEventListener("click", (e) => {
       calculator.dataset.previousKeyType = "clear";
     }
     if(action === 'clearOne') {
-        let str = display.textContent
-        if(str.length > 1) {
+        let str = display.textContent;
+        if(str === 'undefined') {
+          display.textContent = '0';
+        } else if(str.length > 1 && str !== 'undefined') {
             str = str.slice(0, -1);
             display.textContent = str;
         } else {
@@ -57,6 +59,7 @@ keys.addEventListener("click", (e) => {
         }
     }
     if (action === "calculate") {
+
       const firstValue = calculator.dataset.firstValue;
       const operator = calculator.dataset.operator;
       const secondValue = displayNumber;
@@ -94,6 +97,9 @@ const calculate = (num1, operator, num2) => {
   } else if (operator === "subtract") {
     result = firstNum - secondNum;
   } else if (operator === "divide") {
+    if(firstNum === 0 && secondNum === 0) {
+       return result = 'undefined';
+    }
     result = firstNum / secondNum;
   } else if (operator === "multiply") {
     result = firstNum * secondNum;

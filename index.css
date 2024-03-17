@@ -27,5 +27,10 @@
 
 .key_equal {
     grid-column: -2;
-    grid-row: 2 / span 4;
+    grid-row: 2 / span 3;
+}
+
+.key_clearOne {
+    grid-column: -2;
+
 }
