@@ -11,6 +11,7 @@
     margin-right: auto;
     margin-top: 2em;
     max-width: 20em;
+    height: 19.65em;
 }
 
 .calculator_display {
@@ -21,8 +22,24 @@
 
 .calculator_keys {
     display: grid;
-    grid-gap: 1px;
+    grid-gap: 0px;
    grid-template-columns: repeat(4, 1fr);
+}
+
+.calculator_keys button {
+    border: 1px solid black;
+    border-radius: 0px;
+    font-size: 2.5em;
+}
+
+.calculator_keys button:hover {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.calculator_keys button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .key_equal {
@@ -32,5 +49,4 @@
 
 .key_clearOne {
     grid-column: -2;
-
 }
