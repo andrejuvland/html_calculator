@@ -1,3 +1,3 @@
 # html_calculator
 
-Simple calculator create with html, css and javscript
+Simple calculator created with html, css and javscript.
